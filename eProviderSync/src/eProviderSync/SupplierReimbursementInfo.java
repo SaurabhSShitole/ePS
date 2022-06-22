@@ -8,11 +8,14 @@ import java.util.Scanner;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.netty.handler.timeout.TimeoutException;
 
@@ -34,9 +37,21 @@ public class SupplierReimbursementInfo {
         driver.findElement(By.xpath("//a[@data-original-title='Portfolio Provider Management']")).click();
         
         //open existing supplier
-        WebElement supplier = driver.findElement(By.xpath("//tr[@id=\"255716\"]"));
-        Actions a= new Actions(driver);
-        a.doubleClick(supplier).build().perform();
+        
+    	WebElement add = driver.findElement(By.xpath("//td[@id=\"btnPortfolioSearchNew\"]"));
+		JavascriptExecutor E=(JavascriptExecutor)driver;
+		E.executeScript("arguments[0].click()", add);
+		
+		WebElement DD = driver.findElement(By.xpath("//select[@id=\"providerTypeDDL\"]"));
+		Select D=new Select(DD);
+		
+		WebDriverWait w=new WebDriverWait(driver, Duration.ofSeconds(60000));
+		w.until(ExpectedConditions.elementToBeClickable(DD));
+		D.selectByVisibleText("Supplier");
+		driver.findElement(By.xpath("//input[@id=\"TaxID\"]")).sendKeys("273899944",Keys.ENTER);
+		driver.findElement(By.xpath("//button[@id=\"btnTaxIDSearch\"]")).click();
+		driver.findElement(By.xpath("//button[@id=\"btnOpenProvider\"]")).click();		
+      
         
         //To select section
         Select sections=new Select(driver.findElement(By.xpath("//div[@id=\"sectionMenu\"]/div/select")));
@@ -87,7 +102,7 @@ public class SupplierReimbursementInfo {
 
        driver.findElement(By.xpath("//input[@value=\"Category Rates - Supplier\"]")).click();
        driver.findElement(By.xpath("//input[@value=\"Anesthesia Conversion Factor - Supplier Network\"]")).click();
-       Thread.sleep(2000);
+      
       // driver.findElement(By.xpath("value=\"Anesthesia Conversion Factor - Supplier\"")).click();
      
       
