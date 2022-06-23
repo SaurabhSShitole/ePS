@@ -39,8 +39,8 @@ public class SupplierReimbursementInfo {
 		// open existing supplier
 
 		WebElement add = driver.findElement(By.xpath("//td[@id=\"btnPortfolioSearchNew\"]"));
-		JavascriptExecutor E = (JavascriptExecutor) driver;
-		E.executeScript("arguments[0].click()", add);
+		JavascriptExecutor executor = (JavascriptExecutor) driver;
+		executor.executeScript("arguments[0].click()", add);
 
 		WebElement DD = driver.findElement(By.xpath("//select[@id=\"providerTypeDDL\"]"));
 		Select D = new Select(DD);
@@ -70,59 +70,78 @@ public class SupplierReimbursementInfo {
 			s.selectByVisibleText("Institutional");
 		}
 
-		JavascriptExecutor executor = (JavascriptExecutor) driver;
-		executor.executeScript("window.scrollBy(0,250)");
-
+		 executor.executeScript("window.scrollBy(0,300)");
 		WebElement r = driver.findElement(By.xpath("//input[@value=\"Reimbursement Table Information - Supplier\"]"));
 		executor.executeScript("arguments[0].click()", r);
 		
 		
-		
-	    try {
-		WebElement manualOverride = driver.findElement(By.xpath("//span[@title=\"false\"]"));
-		Actions mo = new Actions(driver);
-		mo.doubleClick(manualOverride).build().perform();
+		 try {
+				WebElement manualOverride = driver.findElement(By.xpath("//span[@title=\"false\"]"));
+				Actions mo = new Actions(driver);
+				mo.doubleClick(manualOverride).build().perform();
 
-	     } 
-	    catch (Exception e) {
-		WebElement manualOverride1 = driver.findElement(By.xpath("//div[@col-id=\"ManualOverride\" and @ style=\"width: 171px; left: 499px; text-align: center;\"]"));
-		Actions mo = new Actions(driver);
-		mo.doubleClick(manualOverride1).build().perform();
+			     } 
+			    catch (Exception e) {
+				WebElement manualOverride1 = driver.findElement(By.xpath("//div[@col-id=\"ManualOverride\" and @ style=\"width: 171px; left: 499px; text-align: center;\"]"));
+				Actions mo = new Actions(driver);
+				mo.doubleClick(manualOverride1).build().perform();
 
-	     }
+			     }
 		
 		
+		
+		
+		// WebElement manualOverride = driver.findElement(By.xpath("(//div[@col-id=\"ManualOverride\"])[2]"));
+	   
 		driver.findElement(By.xpath("//div[@style=\"width: 163px; left: 670px; white-space: normal;\"]")).click();
-		driver.findElement(By.xpath("//input[@value=\"Category Rates - Supplier Network\"]")).click();
-
+        Thread.sleep(2000);
 
 		// To select table name
-		driver.findElement(By.xpath("//div[@style=\"width: 163px; left: 670px; white-space: normal;\"]")).click();
+	    driver.findElement(By.xpath("//div[@style=\"width: 163px; left: 670px; white-space: normal;\"]")).click();
 		Select tablename = new Select(driver.findElement(By.xpath("//select[@id=\"idTableName_0\"]")));
 		tablename.selectByVisibleText("ASC 2009");
-		Thread.sleep(5000);
+		//Thread.sleep(5000);
+		driver.findElement(By.xpath("//input[@value=\"Category Rates - Supplier Network\"]")).click();
 
 		// Scroll
-		//executor.executeScript("window.scrollBy(0,300)");
-		executor.executeScript("window.scrollBy(0,document.body.scrollHeight)");
+		executor.executeScript("window.scrollBy(0,300)");
+		//executor.executeScript("window.scrollBy(0,document.body.scrollHeight)");
 
 
 		driver.findElement(By.xpath("//input[@value=\"Category Rates - Supplier\"]")).click();
-		driver.findElement(By.xpath("//input[@value=\"Anesthesia Conversion Factor - Supplier Network\"]")).click();
-		executor.executeScript("window.scrollBy(0,document.body.scrollHeight)");
-		
-		
 		WebElement categoryratesMO = driver.findElement(By.xpath("(//div[@col-id=\"ManualOverride\"])[4]/span"));
-		Actions action=new Actions(driver);
-		action.doubleClick(categoryratesMO).build().perform();
-		//driver.findElement(By.xpath("(//div[@col-id=\"ServiceCategoryReimPercent\"])[2]")).sendKeys("014",Keys.ENTER);
+		//Actions action=new Actions(driver);
+		//action.doubleClick(categoryratesMO).build().perform();
+		
+				
+		
+		executor.executeScript("window.scrollBy(0,300)");
+		driver.findElement(By.xpath("//input[@value=\"Anesthesia Conversion Factor - Supplier Network\"]")).click();
+		//executor.executeScript("window.scrollBy(0,document.body.scrollHeight)");
 		
 		
-		//driver.findElement(By.xpath("//input[@value=\"Anesthesia Conversion Factor - Supplier\"]")).click();
 		
+		driver.findElement(By.xpath("(//div[@col-id=\"ServiceCategoryReimPercent\"])[2]")).sendKeys("014",Keys.ENTER);
+		executor.executeScript("window.scrollBy(0,300)");
+
+		
+		driver.findElement(By.xpath("//input[@value=\"Anesthesia Conversion Factor - Supplier\"]")).click();
+		executor.executeScript("window.scrollBy(0,300)");
+
 		
 		driver.findElement(By.xpath("//input[@value=\"Benefit Network Discount - Supplier Network\"]")).click();
-		//executor.executeScript("window.scrollBy(0,100)");
+		executor.executeScript("window.scrollBy(0,300)");
+		driver.findElement(By.xpath("//input[@value=\"Benefit Network Discount - Supplier\"]")).click();
+		executor.executeScript("window.scrollBy(0,300)");
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("//input[@value=\"Charge Master Curb - Supplier Network\"]")).click();
+		executor.executeScript("window.scrollBy(0,300)");
+		driver.findElement(By.xpath("//input[@value=\"Charge Master Curb - Supplier\"]")).click();
+		executor.executeScript("window.scrollBy(0,300)");
+		driver.findElement(By.xpath("//input[@value=\"Percentage Payment Rate - Supplier Network\"]")).click();
+		Thread.sleep(2000);
+		executor.executeScript("window.scrollBy(0,document.body.scrollHeight)");
+		driver.findElement(By.xpath("//input[@value=\"Percentage Payment Rate - Supplier\"]")).click();
 
 
 	}
