@@ -71,76 +71,139 @@ public class SupplierReimbursementInfo {
 		}
 
 		 executor.executeScript("window.scrollBy(0,300)");
+		 
+		 
+		 //Reimbursement Table Information - Supplier Repeater
 		WebElement r = driver.findElement(By.xpath("//input[@value=\"Reimbursement Table Information - Supplier\"]"));
 		executor.executeScript("arguments[0].click()", r);
 		
-		
-		 try {
-				WebElement manualOverride = driver.findElement(By.xpath("//span[@title=\"false\"]"));
-				Actions mo = new Actions(driver);
-				mo.doubleClick(manualOverride).build().perform();
-
-			     } 
-			    catch (Exception e) {
-				WebElement manualOverride1 = driver.findElement(By.xpath("//div[@col-id=\"ManualOverride\" and @ style=\"width: 171px; left: 499px; text-align: center;\"]"));
-				Actions mo = new Actions(driver);
-				mo.doubleClick(manualOverride1).build().perform();
-
-			     }
-		
-		
-		
-		
-		// WebElement manualOverride = driver.findElement(By.xpath("(//div[@col-id=\"ManualOverride\"])[2]"));
-	   
+		//To select MO 
+		 try 
+		 {
+			WebElement manualOverride = driver.findElement(By.xpath("//span[@title=\"false\"]"));
+			Actions mo = new Actions(driver);
+			mo.doubleClick(manualOverride).build().perform();
+	     } 
+	    catch (Exception e) 
+		 {
+			WebElement manualOverride1 = driver.findElement(By.xpath("//div[@col-id=\"ManualOverride\" and @ style=\"width: 171px; left: 499px; text-align: center;\"]"));
+			Actions mo = new Actions(driver);
+			mo.doubleClick(manualOverride1).build().perform();
+	     }	   
 		driver.findElement(By.xpath("//div[@style=\"width: 163px; left: 670px; white-space: normal;\"]")).click();
         Thread.sleep(2000);
 
 		// To select table name
 	    driver.findElement(By.xpath("//div[@style=\"width: 163px; left: 670px; white-space: normal;\"]")).click();
+		Thread.sleep(2000);
 		Select tablename = new Select(driver.findElement(By.xpath("//select[@id=\"idTableName_0\"]")));
 		tablename.selectByVisibleText("ASC 2009");
-		//Thread.sleep(5000);
+		Thread.sleep(5000);
+		
+		
+		
+		//Category Rates - Supplier Network Repeater
 		driver.findElement(By.xpath("//input[@value=\"Category Rates - Supplier Network\"]")).click();
-
-		// Scroll
 		executor.executeScript("window.scrollBy(0,300)");
-		//executor.executeScript("window.scrollBy(0,document.body.scrollHeight)");
-
-
+        Thread.sleep(3000);
+        
+        
+        
+        //Category Rates - Supplier Repeater
 		driver.findElement(By.xpath("//input[@value=\"Category Rates - Supplier\"]")).click();
+        Thread.sleep(4000);
+        
+        //To select categoryratesMO
 		WebElement categoryratesMO = driver.findElement(By.xpath("(//div[@col-id=\"ManualOverride\"])[4]/span"));
-		//Actions action=new Actions(driver);
-		//action.doubleClick(categoryratesMO).build().perform();
+		Actions action=new Actions(driver);
+		action.doubleClick(categoryratesMO).build().perform();
+		Thread.sleep(2000);
 		
-				
-		
+		//To send Value in ServiceCategoryReimPercent
+		driver.findElement(By.xpath("(//div[@col-id=\"ServiceCategoryReimPercent\"])[2]")).click();
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("(//div[@col-id=\"ServiceCategoryReimPercent\"])[2]")).sendKeys("010",Keys.ENTER);
+		Thread.sleep(4000);
 		executor.executeScript("window.scrollBy(0,300)");
+		
+		
+		
+		//Anesthesia Conversion Factor - Supplier Network Repeater
 		driver.findElement(By.xpath("//input[@value=\"Anesthesia Conversion Factor - Supplier Network\"]")).click();
-		//executor.executeScript("window.scrollBy(0,document.body.scrollHeight)");
+		executor.executeScript("window.scrollBy(0,450)");
+		Thread.sleep(4000);
 		
-		
-		
-		driver.findElement(By.xpath("(//div[@col-id=\"ServiceCategoryReimPercent\"])[2]")).sendKeys("014",Keys.ENTER);
+		//To select ServiceCategoryFromDate
+		driver.findElement(By.xpath("(//div[@col-id=\"ServiceCategoryFrom\"])[2]")).sendKeys("007/11/2022",Keys.ENTER);
+		Thread.sleep(4000);
 		executor.executeScript("window.scrollBy(0,300)");
 
-		
+		//Anesthesia Conversion Factor - Supplier repeater
 		driver.findElement(By.xpath("//input[@value=\"Anesthesia Conversion Factor - Supplier\"]")).click();
-		executor.executeScript("window.scrollBy(0,300)");
+		Thread.sleep(4000);
+
+		//To select Anesthesia Repeater MO
+		try {
+			WebElement AnesthesiaMO = driver.findElement(By.xpath("(//div[@col-id=\"ManualOverride\"])[12]/span"));
+			Actions a=new Actions(driver);
+			a.doubleClick(AnesthesiaMO).build().perform();
+			
+		} catch (Exception e) {
+			WebElement AnesthesiaMO = driver.findElement(By.xpath("(//div[@col-id=\"ManualOverride\"])[12]/span"));
+			Actions a=new Actions(driver);
+			a.doubleClick(AnesthesiaMO).build().perform();
+
+		}
+		Thread.sleep(4000);
 
 		
+		executor.executeScript("window.scrollBy(0,300)");
+		Thread.sleep(4000);
+
+
+		//Benefit Network Discount - Supplier Network Repeater
 		driver.findElement(By.xpath("//input[@value=\"Benefit Network Discount - Supplier Network\"]")).click();
 		executor.executeScript("window.scrollBy(0,300)");
+		Thread.sleep(2000);
+		
+		
+		//Benefit Network Discount - Supplier Repeater
 		driver.findElement(By.xpath("//input[@value=\"Benefit Network Discount - Supplier\"]")).click();
+		
+		//To select BenefitNetworkMO
+		try {
+			WebElement BenefitNetworkMO = driver.findElement(By.xpath("(//div[@col-id=\"ManualOverride\"])[16]/span"));
+			Actions a=new Actions(driver);
+			a.doubleClick(BenefitNetworkMO).build().perform();
+			
+		} catch (Exception e) {
+			WebElement BenefitNetworkMO = driver.findElement(By.xpath("(//div[@col-id=\"ManualOverride\"])[16]/span"));
+			Actions a=new Actions(driver);
+			a.doubleClick(BenefitNetworkMO).build().perform();
+		}
+		
+		
+		
 		executor.executeScript("window.scrollBy(0,300)");
 		Thread.sleep(2000);
+		
+		//Charge Master Curb - Supplier Network Repeater 
 		driver.findElement(By.xpath("//input[@value=\"Charge Master Curb - Supplier Network\"]")).click();
 		executor.executeScript("window.scrollBy(0,300)");
+		Thread.sleep(2000);
+		
+		//Charge Master Curb - Supplier Repeater
 		driver.findElement(By.xpath("//input[@value=\"Charge Master Curb - Supplier\"]")).click();
+		Thread.sleep(2000);
 		executor.executeScript("window.scrollBy(0,300)");
+		
+		//Percentage Payment Rate - Supplier Network Repeater
 		driver.findElement(By.xpath("//input[@value=\"Percentage Payment Rate - Supplier Network\"]")).click();
 		Thread.sleep(2000);
 		executor.executeScript("window.scrollBy(0,document.body.scrollHeight)");
+		
+		
+		//Percentage Payment Rate - Supplier Repeater
 		driver.findElement(By.xpath("//input[@value=\"Percentage Payment Rate - Supplier\"]")).click();
 
 
